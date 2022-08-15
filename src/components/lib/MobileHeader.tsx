@@ -4,7 +4,7 @@ import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
 
 import DropdownMenu from "./DropdownMenu";
 
-function MobileHeader() {
+function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
@@ -14,7 +14,7 @@ function MobileHeader() {
                     className="h-12 w-12 rounded-full self-center"
                     src="/portrait.png"
                 />
-                <div className="text-xl text-slate-200 self-center ml-2">
+                <div className="text-xl text-slate-200 self-center ml-4">
                     Thomas Woodward
                 </div>
                 <div
@@ -40,4 +40,4 @@ function MobileHeader() {
     );
 }
 
-export default MobileHeader;
+export default Header;

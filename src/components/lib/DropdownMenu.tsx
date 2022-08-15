@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { useNavigate } from "@tanstack/react-location";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faTimeline } from "@fortawesome/free-solid-svg-icons";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 import useWindowResizeAnimFreeze from "../../hooks/useWindowResizeAnimFreeze";
@@ -40,7 +40,7 @@ function DropdownMenu(props: DropdownProps) {
     return (
         <div
             ref={onSetRef}
-            className={`-top-[calc(100vh_+_4rem)] transition ease-in-out duration-300
+            className={`-top-[calc(100vh_+_4rem)] transition ease-in-out duration-200
                 ${open && ` translate-y-[calc(100vh_+_8rem)]`} 
                 h-[calc(100vh_-_4rem)] w-full absolute bg-slate-800 backdrop-blur-md z-10 md:hidden`}
         >
@@ -56,6 +56,7 @@ function DropdownMenu(props: DropdownProps) {
                     className="text-slate-100 text-4xl m-auto cursor-pointer select-none"
                     onClick={() => onNavigate("/experience")}
                 >
+                    <FontAwesomeIcon icon={faTimeline} className="mr-5" />
                     Experience
                 </li>
                 <li
