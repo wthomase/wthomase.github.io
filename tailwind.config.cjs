@@ -3,9 +3,13 @@ module.exports = {
     content: ["./src/**/*.{html,ts,tsx}"],
     theme: {
         extend: {
+            transitionProperty: {
+                width: "width",
+            },
             animation: {
                 fade: "fadeIn 0.2s linear",
                 fadeLeftIn: "fadeLeftIn 0.35s linear",
+                fadeBottomUp: "fadeBottomUp 0.35s linear",
             },
             keyframes: () => ({
                 fadeIn: {
@@ -28,6 +32,25 @@ module.exports = {
                     },
                     "100%": {
                         transform: "translate(0%, 0px)",
+                        opacity: "100%",
+                    },
+                },
+                fadeBottomUp: {
+                    "0%": {
+                        transform: "translate(0px, 200%)",
+                        opacity: "0%",
+                    },
+                    "35%": {
+                        transform: "translate(0px, 40%)",
+                    },
+                    "50%": {
+                        opacity: "50%",
+                    },
+                    "55%": {
+                        transform: "translate(0px, 16%)",
+                    },
+                    "100%": {
+                        transform: "translate(0px, 0%)",
                         opacity: "100%",
                     },
                 },

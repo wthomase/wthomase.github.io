@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { useNavigate } from "@tanstack/react-location";
+import { useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faTimeline } from "@fortawesome/free-solid-svg-icons";
@@ -32,7 +32,7 @@ function DropdownMenu(props: DropdownProps) {
             if (external) {
                 window.open(path, "_blank");
             } else {
-                navigate({ to: path });
+                navigate(path);
             }
         }
     };
@@ -40,9 +40,9 @@ function DropdownMenu(props: DropdownProps) {
     return (
         <div
             ref={onSetRef}
-            className={`-top-[calc(100vh_+_4rem)] transition ease-in-out duration-200
-                ${open && ` translate-y-[calc(100vh_+_8rem)]`} 
-                h-[calc(100vh_-_4rem)] w-full absolute bg-slate-800 backdrop-blur-md z-10 md:hidden`}
+            className={`-translate-y-full pt-16 ease-in-out duration-200
+                ${open ? `translate-y-0` : ""}
+                h-screen w-full absolute bg-slate-800 backdrop-blur-md z-10 md:hidden`}
         >
             <ul className="flex flex-col h-full">
                 <li
@@ -62,10 +62,7 @@ function DropdownMenu(props: DropdownProps) {
                 <li
                     className="text-slate-100 text-4xl m-auto cursor-pointer select-none"
                     onClick={() =>
-                        onNavigate(
-                            `https://linkedin.com/in/thomas-woodward-571947117`,
-                            true
-                        )
+                        onNavigate(`https://linkedin.com/in/thomas-woodward-571947117`, true)
                     }
                 >
                     <FontAwesomeIcon icon={faLinkedin} className="mr-5" />

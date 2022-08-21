@@ -10,13 +10,8 @@ function Header() {
     return (
         <>
             <div className="flex fixed bg-slate-800 h-16 w-full px-6 py-2 z-20 drop-shadow-lg select-none md:hidden">
-                <img
-                    className="h-12 w-12 rounded-full self-center"
-                    src="/portrait.png"
-                />
-                <div className="text-xl text-slate-200 self-center ml-4">
-                    Thomas Woodward
-                </div>
+                <img className="h-12 w-12 rounded-full self-center" src="/portrait.png" />
+                <div className="text-xl text-slate-200 self-center ml-4">Thomas Woodward</div>
                 <div
                     className="text-slate-200 ml-auto self-center cursor-pointer"
                     onClick={() => {
