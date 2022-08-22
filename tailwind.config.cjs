@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: ["./src/**/*.{html,ts,tsx}"],
+    content: ["./src/**/*.{html,ts,tsx}", "./index.html"],
     theme: {
         extend: {
             transitionProperty: {
@@ -37,17 +37,17 @@ module.exports = {
                 },
                 fadeBottomUp: {
                     "0%": {
-                        transform: "translate(0px, 200%)",
+                        transform: "translate(0px, 40px)",
                         opacity: "0%",
                     },
                     "35%": {
-                        transform: "translate(0px, 40%)",
+                        transform: "translate(0px, 24px)",
                     },
                     "50%": {
-                        opacity: "50%",
+                        opacity: "40%",
                     },
                     "55%": {
-                        transform: "translate(0px, 16%)",
+                        transform: "translate(0px, 12px)",
                     },
                     "100%": {
                         transform: "translate(0px, 0%)",

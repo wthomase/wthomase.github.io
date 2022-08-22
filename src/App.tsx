@@ -6,35 +6,45 @@ import MobileHeader from "./components/lib/MobileHeader";
 
 import Experience from "./components/views/Experience";
 import Home from "./components/views/Home";
+import DropdownMenu from "./components/lib/DropdownMenu";
 
 function App() {
     const [textAnimPlayed, setTextAnimPlayed] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
 
     return (
-        <div className="flex font-cascadiacode min-h-[400px] h-screen w-screen bg-slate-600">
+        <div className={"font-cascadiacode min-h-[400px] h-full w-full overflow-visible"}>
             <BrowserRouter>
-                <MobileHeader />
-                <Routes>
-                    <Route
-                        index
-                        element={
-                            <ContentCard>
-                                <Home
-                                    textAnimPlayed={textAnimPlayed}
-                                    setTextAnimPlayed={setTextAnimPlayed}
-                                />
-                            </ContentCard>
-                        }
-                    />
-                    <Route
-                        path="experience"
-                        element={
-                            <ContentCard>
-                                <Experience />
-                            </ContentCard>
-                        }
-                    />
-                </Routes>
+                <MobileHeader setMenuOpen={setMenuOpen} menuOpen={menuOpen} />
+                <DropdownMenu
+                    open={menuOpen}
+                    onSelect={() => {
+                        setMenuOpen(false);
+                    }}
+                />
+                <div className="flex grow px-4 py-8 md:p-8">
+                    <Routes>
+                        <Route
+                            index
+                            element={
+                                <ContentCard>
+                                    <Home
+                                        textAnimPlayed={textAnimPlayed}
+                                        setTextAnimPlayed={setTextAnimPlayed}
+                                    />
+                                </ContentCard>
+                            }
+                        />
+                        <Route
+                            path="experience"
+                            element={
+                                <ContentCard>
+                                    <Experience />
+                                </ContentCard>
+                            }
+                        />
+                    </Routes>
+                </div>
             </BrowserRouter>
         </div>
     );
