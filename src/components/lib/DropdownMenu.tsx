@@ -24,6 +24,7 @@ function DropdownMenu(props: DropdownProps) {
     }, []);
 
     const onClick = () => onSelect();
+    const selectedClassName = "border-b-slate-100 border-b-2 pb-2";
 
     return (
         <div
@@ -34,16 +35,21 @@ function DropdownMenu(props: DropdownProps) {
         >
             <ul className="flex flex-col h-full">
                 <li className="text-slate-100 text-4xl m-auto cursor-pointer select-none">
-                    <NavLink to={"/"} onClick={onClick}>
+                    <NavLink
+                        to={"/"}
+                        onClick={onClick}
+                        className={({ isActive }) => (isActive ? selectedClassName : undefined)}
+                    >
                         <FontAwesomeIcon icon={faHome} className="mr-5" />
                         Home
                     </NavLink>
                 </li>
-                <li
-                    className="text-slate-100 text-4xl m-auto cursor-pointer select-none"
-                    onClick={onClick}
-                >
-                    <NavLink to={"/experience"}>
+                <li className="text-slate-100 text-4xl m-auto cursor-pointer select-none">
+                    <NavLink
+                        to={"/experience"}
+                        onClick={onClick}
+                        className={({ isActive }) => (isActive ? selectedClassName : undefined)}
+                    >
                         <FontAwesomeIcon icon={faTimeline} className="mr-5" />
                         Experience
                     </NavLink>

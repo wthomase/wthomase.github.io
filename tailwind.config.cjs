@@ -8,7 +8,7 @@ module.exports = {
             },
             animation: {
                 fade: "fadeIn 0.2s linear",
-                fadeLeftIn: "fadeLeftIn 0.35s linear",
+                fadeLeftIn: "fadeLeftIn 0.25s linear",
                 fadeBottomUp: "fadeBottomUp 0.35s linear",
             },
             keyframes: () => ({
@@ -18,20 +18,20 @@ module.exports = {
                 },
                 fadeLeftIn: {
                     "0%": {
-                        transform: "translate(-100%, 0px)",
+                        transform: "translate(-40px, 0px)",
                         opacity: "0%",
                     },
                     "35%": {
-                        transform: "translate(-20%, 0px)",
+                        transform: "translate(-24px, 0px)",
                     },
                     "50%": {
-                        opacity: "50%",
+                        opacity: "40%",
                     },
                     "55%": {
-                        transform: "translate(-8%, 0px)",
+                        transform: "translate(-12px, 0px)",
                     },
                     "100%": {
-                        transform: "translate(0%, 0px)",
+                        transform: "translate(0px, 0px)",
                         opacity: "100%",
                     },
                 },

@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
 import ContentCard from "./components/lib/ContentCard";
-import MobileHeader from "./components/lib/MobileHeader";
+import Header from "./components/lib/Header";
 
 import Experience from "./components/views/Experience";
 import Home from "./components/views/Home";
@@ -13,16 +13,16 @@ function App() {
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
-        <div className={"font-cascadiacode min-h-[400px] h-full w-full overflow-visible"}>
+        <div className={"font-cascadiacode min-h-[600px] h-full w-full overflow-visible"}>
             <BrowserRouter>
-                <MobileHeader setMenuOpen={setMenuOpen} menuOpen={menuOpen} />
+                <Header setMenuOpen={setMenuOpen} menuOpen={menuOpen} />
                 <DropdownMenu
                     open={menuOpen}
                     onSelect={() => {
                         setMenuOpen(false);
                     }}
                 />
-                <div className="flex grow px-4 py-8 md:p-8">
+                <div className="flex grow px-4 py-8 md:mx-auto md:w-[768px]">
                     <Routes>
                         <Route
                             index

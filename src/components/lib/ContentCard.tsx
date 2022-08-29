@@ -7,8 +7,8 @@ interface ContentCardProps {
 
 function ContentCard(props: ContentCardProps) {
     return (
-        <div className="font-cascadiacode flex flex-col min-h-[300px] bg-slate-700 w-full rounded-xl p-8 text-slate-100 drop-shadow-2xl z-0 overflow-hidden">
-            <CardHeader />
+        <div className="font-cascadiacode flex flex-col min-h-[480px] md:min-h-[640px] bg-slate-700 w-full rounded-xl p-8 text-slate-100 drop-shadow-2xl z-0 overflow-hidden">
+            {/* <CardHeader /> */}
             {props.children}
         </div>
     );
