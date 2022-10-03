@@ -1,3 +1,5 @@
+const plugin = require("tailwindcss/plugin");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: ["./src/**/*.{html,ts,tsx}", "./index.html"],
@@ -5,11 +7,21 @@ module.exports = {
         extend: {
             transitionProperty: {
                 width: "width",
+                widthPos: "width, left, top, bottom, right",
+                forceNone: "none !important",
             },
             animation: {
-                fade: "fadeIn 0.2s linear",
-                fadeLeftIn: "fadeLeftIn 0.25s linear",
-                fadeBottomUp: "fadeBottomUp 0.35s linear",
+                fade: "fadeIn 0.2s linear forwards",
+                fadeLeftIn: "fadeLeftIn 0.25s linear forwards",
+                fadeBottomUp: "fadeBottomUp 0.35s linear forwards",
+            },
+            animationDelay: {
+                75: "75ms",
+                150: "150ms",
+                300: "300ms",
+                500: "500ms",
+                750: "750ms",
+                1000: "1000ms",
             },
             keyframes: () => ({
                 fadeIn: {
@@ -50,7 +62,7 @@ module.exports = {
                         transform: "translate(0px, 12px)",
                     },
                     "100%": {
-                        transform: "translate(0px, 0%)",
+                        transform: "translate(0px, 0px)",
                         opacity: "100%",
                     },
                 },
@@ -76,5 +88,16 @@ module.exports = {
             },
         },
     },
-    plugins: [],
+    plugins: [
+        plugin(function ({ matchUtilities, theme }) {
+            matchUtilities(
+                {
+                    animationDelay: (value) => ({
+                        animationDelay: value,
+                    }),
+                },
+                { values: theme("animationDelay") }
+            );
+        }),
+    ],
 };

@@ -1,12 +1,12 @@
 import { useEffect, useRef } from "react";
 
-export default function useWindowResizeAnimFreeze(htmlEle: HTMLDivElement | null) {
+export default function useWindowResizeAnimFreeze(htmlEle: HTMLElement | null) {
     const animTimeout = useRef<number | undefined>();
 
     useEffect(() => {
         function addStopper() {
             if (htmlEle) {
-                htmlEle.classList.add("transition-none");
+                htmlEle.classList.add("transition-forceNone");
 
                 clearTimeout(animTimeout.current);
                 animTimeout.current = setTimeout(() => {
@@ -17,7 +17,7 @@ export default function useWindowResizeAnimFreeze(htmlEle: HTMLDivElement | null
 
         function removeStopper() {
             if (htmlEle) {
-                htmlEle.classList.remove("transition-none");
+                htmlEle.classList.remove("transition-forceNone");
             }
         }
 
@@ -25,6 +25,6 @@ export default function useWindowResizeAnimFreeze(htmlEle: HTMLDivElement | null
 
         return () => {
             window.removeEventListener("resize", addStopper);
-        }
-    }, [htmlEle]); 
+        };
+    }, [htmlEle]);
 }

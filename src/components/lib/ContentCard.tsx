@@ -1,5 +1,3 @@
-import CardHeader from "./CardHeader";
-
 interface ContentCardProps {
     headerVisible?: boolean;
     children?: JSX.Element[] | JSX.Element;
@@ -7,8 +5,7 @@ interface ContentCardProps {
 
 function ContentCard(props: ContentCardProps) {
     return (
-        <div className="font-cascadiacode flex flex-col min-h-[480px] md:min-h-[640px] bg-slate-700 w-full rounded-xl p-8 text-slate-100 drop-shadow-2xl z-0 overflow-hidden">
-            {/* <CardHeader /> */}
+        <div className="bg-slate-700 text-slate-100 relative font-cascadiacode flex flex-col min-h-[480px] w-full z-0 p-6 overflow-hidden md:min-h-[640px] md:rounded-xl md:p-8 md:drop-shadow-2xl">
             {props.children}
         </div>
     );

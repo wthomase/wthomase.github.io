@@ -30,8 +30,8 @@ function DropdownMenu(props: DropdownProps) {
         <div
             ref={onSetRef}
             className={`-translate-x-full ease-in-out duration-200
-                ${open ? `visible translate-x-0` : "invisible"}
-                fixed top-16 left-0 right-0 bottom-0 bg-slate-800 backdrop-blur-md z-10 touch-none md:hidden`}
+                ${open && `translate-x-0`}
+                fixed top-16 left-0 right-0 bottom-0 bg-slate-800 backdrop-blur-md z-10 md:hidden`}
         >
             <ul className="flex flex-col h-full">
                 <li className="text-slate-100 text-4xl m-auto cursor-pointer select-none">
