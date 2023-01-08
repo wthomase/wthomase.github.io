@@ -5,12 +5,12 @@ import { NavLink, useLocation } from "react-router-dom";
 import useWindowResizeAnimFreeze from "../../hooks/useWindowResizeAnimFreeze";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
-interface HeaderProps {
+interface NavProps {
     menuOpen: boolean;
     setMenuOpen: (newVal: boolean) => void;
 }
 
-function Header(props: HeaderProps) {
+function Nav(props: NavProps) {
     const { menuOpen, setMenuOpen } = props;
 
     const [selWidth, setSelWidth] = useState<number | null>(null);
@@ -121,4 +121,4 @@ function Header(props: HeaderProps) {
     );
 }
 
-export default Header;
+export default Nav;

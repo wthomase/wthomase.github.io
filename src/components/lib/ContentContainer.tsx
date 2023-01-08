@@ -1,7 +1,7 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import uasHasBeenInViewPort from "../../hooks/useHasBeenInViewPort";
 
-interface TimelineBlockProps {
+interface ContentContainerProps {
     startStr?: string;
     endStr?: string;
     title?: string;
@@ -9,16 +9,16 @@ interface TimelineBlockProps {
     children?: JSX.Element[] | JSX.Element;
 }
 
-function TimelineBlock(props: TimelineBlockProps) {
+function ContentContainer(props: ContentContainerProps) {
     const { startStr, endStr, title, description, children } = props;
 
     const [ref, setRef] = useState<HTMLDivElement | null>(null);
     const isVisible = uasHasBeenInViewPort(ref, 0.05);
 
     return (
-        <div className={"inline-block mb-16"} ref={(newRef) => setRef(newRef)}>
+        <div className={"inline-block mb-16 w-full"} ref={(newRef) => setRef(newRef)}>
             <div
-                className={`opacity-0 flex flex-col bg-slate-800/50 text-slate-100 rounded-md px-4 py-2 mb-4${
+                className={`opacity-0 flex flex-col bg-slate-800/50 text-slate-100 rounded-t-md px-4 py-2 ${
                     isVisible ? " animate-fadeBottomUp" : ""
                 }`}
             >
@@ -37,10 +37,9 @@ function TimelineBlock(props: TimelineBlockProps) {
                 )}
             </div>
 
-            {/* Timeline block contents */}
-            <ul className="md:px-4">{children}</ul>
+            <ul>{children}</ul>
         </div>
     );
 }
 
-export default TimelineBlock;
+export default ContentContainer;

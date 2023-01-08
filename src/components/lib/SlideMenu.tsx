@@ -7,12 +7,12 @@ import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 import useWindowResizeAnimFreeze from "../../hooks/useWindowResizeAnimFreeze";
 
-interface DropdownProps {
+interface SlideMenuProps {
     open: boolean;
     onSelect: () => void;
 }
 
-function DropdownMenu(props: DropdownProps) {
+function SlideMenu(props: SlideMenuProps) {
     const { open, onSelect } = props;
 
     const [divRef, setDivRef] = useState<HTMLDivElement | null>(null);
@@ -27,10 +27,10 @@ function DropdownMenu(props: DropdownProps) {
     const selectedClassName = "border-b-slate-100 border-b-2 pb-2";
 
     return (
-        <div
+        <nav
             ref={onSetRef}
             className={`-translate-x-full ease-in-out duration-200
-                ${open && `translate-x-0`}
+                ${open && `will-change-transform translate-x-0`}
                 fixed top-16 left-0 right-0 bottom-0 bg-slate-800 backdrop-blur-md z-10 md:hidden`}
         >
             <ul className="flex flex-col h-full">
@@ -70,8 +70,8 @@ function DropdownMenu(props: DropdownProps) {
                     日本語
                 </li>
             </ul>
-        </div>
+        </nav>
     );
 }
 
-export default DropdownMenu;
+export default SlideMenu;
