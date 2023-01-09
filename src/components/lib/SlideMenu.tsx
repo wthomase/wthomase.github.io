@@ -10,10 +10,11 @@ import useWindowResizeAnimFreeze from "../../hooks/useWindowResizeAnimFreeze";
 interface SlideMenuProps {
     open: boolean;
     onSelect: () => void;
+    enqueueWord: (word: string) => void;
 }
 
-function SlideMenu(props: SlideMenuProps) {
-    const { open, onSelect } = props;
+export default function SlideMenu(props: SlideMenuProps) {
+    const { open, onSelect, enqueueWord } = props;
 
     const [divRef, setDivRef] = useState<HTMLDivElement | null>(null);
 
@@ -37,7 +38,10 @@ function SlideMenu(props: SlideMenuProps) {
                 <li className="text-slate-100 text-4xl m-auto cursor-pointer select-none">
                     <NavLink
                         to={"/"}
-                        onClick={onClick}
+                        onClick={() => {
+                            onClick();
+                            enqueueWord("Hello!");
+                        }}
                         className={({ isActive }) => (isActive ? selectedClassName : undefined)}
                     >
                         <FontAwesomeIcon icon={faHome} className="mr-5" />
@@ -47,7 +51,10 @@ function SlideMenu(props: SlideMenuProps) {
                 <li className="text-slate-100 text-4xl m-auto cursor-pointer select-none">
                     <NavLink
                         to={"/experience"}
-                        onClick={onClick}
+                        onClick={() => {
+                            onClick();
+                            enqueueWord("Experience");
+                        }}
                         className={({ isActive }) => (isActive ? selectedClassName : undefined)}
                     >
                         <FontAwesomeIcon icon={faTimeline} className="mr-5" />
@@ -73,5 +80,3 @@ function SlideMenu(props: SlideMenuProps) {
         </nav>
     );
 }
-
-export default SlideMenu;

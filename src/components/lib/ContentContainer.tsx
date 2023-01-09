@@ -9,7 +9,7 @@ interface ContentContainerProps {
     children?: JSX.Element[] | JSX.Element;
 }
 
-function ContentContainer(props: ContentContainerProps) {
+export default function ContentContainer(props: ContentContainerProps) {
     const { startStr, endStr, title, description, children } = props;
 
     const [ref, setRef] = useState<HTMLDivElement | null>(null);
@@ -41,5 +41,3 @@ function ContentContainer(props: ContentContainerProps) {
         </div>
     );
 }
-
-export default ContentContainer;

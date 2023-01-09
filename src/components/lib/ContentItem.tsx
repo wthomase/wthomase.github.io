@@ -5,7 +5,7 @@ interface ContentItemProps {
     children: React.ReactNode[] | React.ReactNode;
 }
 
-function ContentItem(props: ContentItemProps) {
+export default function ContentItem(props: ContentItemProps) {
     const { children } = props;
 
     const [ref, setRef] = useState<HTMLLIElement | null>(null);
@@ -23,5 +23,3 @@ function ContentItem(props: ContentItemProps) {
         </li>
     );
 }
-
-export default ContentItem;

@@ -3,86 +3,88 @@ import useCursorBlink from "./useCursorBlink";
 import useInterval from "./useInterval";
 
 interface TypingTextOptions {
-    changeIntervalMs: number;
     cursorBlinkMs: number;
-    delayDeletionMs: number;
-
-    startIndex: number;
+    changeIntervalMs: number;
 }
 
 interface TypingTextState {
+    curWord: string;
     words: string[];
-    wordIndex: number;
     cycled: boolean;
     strIndex: number;
     dir: ActionTypes.FORWARD | ActionTypes.BACKWARD;
-    completed: boolean;
-
+    idle: boolean;
     delayMs: number;
-    changeIntervalMs: number;
-    delayDeletionMs: number;
 }
 
 enum ActionTypes {
-    BACKWARD = 0,
-    FORWARD = 1,
-    NEXT_WORD = 2,
-    MARK_COMPLETE = 3,
-    TOGGLE_DIR = 4,
-    DELAY = 5,
+    BACKWARD = "BACKWARD",
+    FORWARD = "FORWARD",
+    NEXT_WORD = "NEXT_WORD",
+    IDLE = "IDLE",
+    ENQUEUE = "ENQUEUE",
 }
 
-function typingTextReducer(state: TypingTextState, action: { type: number }): TypingTextState {
+function typingTextReducer(state: TypingTextState, action: { type: ActionTypes, word?: string }): TypingTextState {
     switch (action.type) {
         case ActionTypes.FORWARD:
             return {
                 ...state,
+                curWord: state.words[0].substring(0, state.strIndex + 1),
                 strIndex: state.strIndex + 1,
                 dir: ActionTypes.FORWARD,
-                delayMs: state.changeIntervalMs,
             };
         case ActionTypes.BACKWARD:
             return {
                 ...state,
+                curWord: state.words[0].substring(0, state.strIndex - 1),
                 strIndex: state.strIndex - 1,
                 dir: ActionTypes.BACKWARD,
-                cycled: state.dir === ActionTypes.BACKWARD && state.strIndex - 1 === -1,
-                delayMs: state.changeIntervalMs,
+                cycled: state.dir === ActionTypes.BACKWARD && state.strIndex - 1 === 0,
             };
         case ActionTypes.NEXT_WORD:
             return {
                 ...state,
-                wordIndex: state.wordIndex + 1,
-                strIndex: -1,
+                curWord: "",
+                words: state.words.length > 1 ? state.words.slice(1) : state.words, 
+                strIndex: 0,
                 cycled: false,
-                delayMs: state.changeIntervalMs,
             };
-        case ActionTypes.DELAY:
+        case ActionTypes.ENQUEUE: {
+            const words = state.words.length > 0 ? [state.words[0]] : [];
+
+            if (action.word && state.words[0] !== action.word) {
+                words.push(action.word);
+            }
+
             return {
                 ...state,
-                delayMs: state.delayDeletionMs,
-            };
-        case ActionTypes.MARK_COMPLETE:
+                dir: state.words.length > 0 && state.words[0] !== action.word ? ActionTypes.BACKWARD : ActionTypes.FORWARD,
+                strIndex: state.words.length > 0 ? state.strIndex : 0,
+                cycled: state.words.length > 0,
+                idle: false,
+                words
+            }
+        }
+        case ActionTypes.IDLE:
             return {
                 ...state,
-                completed: true,
+                idle: true
             };
         default:
             throw Error("Fatal: Action type did not match.");
     }
 }
 
-export default function useAutoTextTyper(words: string[], options: TypingTextOptions) {
+export default function useAutoTextTyper(startWord: string, options: TypingTextOptions) {
     const initialState: TypingTextState = {
-        words,
-        wordIndex: 0,
+        words: startWord ? [startWord] : [],
         cycled: false,
-        strIndex: options.startIndex && words.length > 0 ? words[0].length - 1 : -1,
+        curWord: "",
+        strIndex: 0,
         dir: ActionTypes.FORWARD,
-        completed: false,
+        idle: !startWord,
         delayMs: options.changeIntervalMs,
-        changeIntervalMs: options.changeIntervalMs,
-        delayDeletionMs: options.delayDeletionMs,
     };
 
     const [state, dispatch] = useReducer(typingTextReducer, initialState);
@@ -94,36 +96,39 @@ export default function useAutoTextTyper(words: string[], options: TypingTextOpt
 
     useInterval(
         () => {
-            const lastWord = state.wordIndex === words.length - 1;
-            const endOfWord = state.strIndex === state.words[state.wordIndex].length - 1;
-            const startOfWord = state.strIndex === -1;
+            const lastWord = state.words.length === 1;
+            const endOfWord = state.strIndex === state.words[0].length;
+            const startOfWord = state.strIndex === 0;
 
             // Don't step while enqueued, may requeue stale state
             if (actionQueue.current.length === 0) {
                 if (lastWord && endOfWord) {
-                    enqueueAction(ActionTypes.MARK_COMPLETE);
+                    enqueueAction(ActionTypes.IDLE);
                 } else if (startOfWord && state.cycled) {
                     enqueueAction(ActionTypes.NEXT_WORD);
                 } else if (endOfWord && !state.cycled) {
-                    enqueueAction(ActionTypes.DELAY);
                     enqueueAction(ActionTypes.BACKWARD);
                 } else if (startOfWord && !state.cycled) {
-                    enqueueAction(ActionTypes.DELAY);
                     enqueueAction(ActionTypes.FORWARD);
                 } else {
                     enqueueAction(state.dir);
                 }
             }
 
-            dispatch({ type: actionQueue.current?.shift() as number });
+            const newAction = actionQueue.current?.shift();
+
+            if (newAction) {
+                dispatch({ type: newAction });
+            }
         },
-        !state.completed ? state.delayMs : null
+        !state.idle ? state.delayMs : null
     );
 
-    const buildStr = state.words[state.wordIndex].substring(0, state.strIndex + 1);
-
     return {
-        currentString: buildStr,
+        text: state.curWord,
         cursorVisible,
+        enqueueWord: (word: string) => {
+            dispatch({ type: ActionTypes.ENQUEUE, word })
+        }
     };
 }

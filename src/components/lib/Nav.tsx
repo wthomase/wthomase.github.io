@@ -8,10 +8,11 @@ import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 interface NavProps {
     menuOpen: boolean;
     setMenuOpen: (newVal: boolean) => void;
+    enqueueWord: (word: string) => void;
 }
 
-function Nav(props: NavProps) {
-    const { menuOpen, setMenuOpen } = props;
+export default function Nav(props: NavProps) {
+    const { menuOpen, setMenuOpen, enqueueWord } = props;
 
     const [selWidth, setSelWidth] = useState<number | null>(null);
     const [selPos, setSelPos] = useState<number | null>(null);
@@ -69,7 +70,7 @@ function Nav(props: NavProps) {
                         ref={homeRef}
                         className={`flex group cursor-pointer self-center align-middle select-none`}
                     >
-                        <NavLink to={"/"} className={"block"}>
+                        <NavLink to={"/"} className={"block"} onClick={() => enqueueWord("Hello!")}>
                             <FontAwesomeIcon icon={faHome} size={"lg"} className="inline mr-2" />
                             Home
                         </NavLink>
@@ -78,7 +79,11 @@ function Nav(props: NavProps) {
                         ref={expRef}
                         className={`flex group cursor-pointer self-center align-middle select-none ml-8`}
                     >
-                        <NavLink to={"/experience"} className={"block"}>
+                        <NavLink
+                            to={"/experience"}
+                            className={"block"}
+                            onClick={() => enqueueWord("Experience")}
+                        >
                             <FontAwesomeIcon
                                 icon={faTimeline}
                                 size={"lg"}
@@ -120,5 +125,3 @@ function Nav(props: NavProps) {
         </nav>
     );
 }
-
-export default Nav;

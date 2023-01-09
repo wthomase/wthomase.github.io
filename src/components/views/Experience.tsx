@@ -1,13 +1,10 @@
 import Chip from "../lib/Chip";
 import ContentItem from "../lib/ContentItem";
 import ContentContainer from "../lib/ContentContainer";
-import Divider from "../lib/Divider";
 
 export default function Experience() {
     return (
         <article>
-            <div className="text-4xl animate-fade shadow-neutral-200">Experience</div>
-            <Divider />
             <ContentContainer
                 startStr={"June 2021"}
                 endStr={"Current"}
