@@ -10,11 +10,10 @@ import useWindowResizeAnimFreeze from "../../hooks/useWindowResizeAnimFreeze";
 interface SlideMenuProps {
     open: boolean;
     onSelect: () => void;
-    enqueueWord: (word: string) => void;
 }
 
 export default function SlideMenu(props: SlideMenuProps) {
-    const { open, onSelect, enqueueWord } = props;
+    const { open, onSelect } = props;
 
     const [divRef, setDivRef] = useState<HTMLDivElement | null>(null);
 
@@ -40,7 +39,6 @@ export default function SlideMenu(props: SlideMenuProps) {
                         to={"/"}
                         onClick={() => {
                             onClick();
-                            enqueueWord("Hello!");
                         }}
                         className={({ isActive }) => (isActive ? selectedClassName : undefined)}
                     >
@@ -53,7 +51,6 @@ export default function SlideMenu(props: SlideMenuProps) {
                         to={"/experience"}
                         onClick={() => {
                             onClick();
-                            enqueueWord("Experience");
                         }}
                         className={({ isActive }) => (isActive ? selectedClassName : undefined)}
                     >

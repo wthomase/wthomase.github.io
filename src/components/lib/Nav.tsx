@@ -8,11 +8,10 @@ import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 interface NavProps {
     menuOpen: boolean;
     setMenuOpen: (newVal: boolean) => void;
-    enqueueWord: (word: string) => void;
 }
 
 export default function Nav(props: NavProps) {
-    const { menuOpen, setMenuOpen, enqueueWord } = props;
+    const { menuOpen, setMenuOpen } = props;
 
     const [selWidth, setSelWidth] = useState<number | null>(null);
     const [selPos, setSelPos] = useState<number | null>(null);
@@ -26,14 +25,21 @@ export default function Nav(props: NavProps) {
     useWindowResizeAnimFreeze(selRef.current);
 
     const selResizer = useCallback(() => {
-        setSelWidth(
-            location.pathname === "/"
-                ? homeRef?.current?.clientWidth!
-                : expRef?.current?.clientWidth!
-        );
-        setSelPos(
-            location.pathname === "/" ? homeRef?.current?.offsetLeft! : expRef?.current?.offsetLeft!
-        );
+        if (location.pathname !== "/" && location.pathname !== "/experience") {
+            setSelWidth(0);
+            setSelPos(0);
+        } else {
+            setSelWidth(
+                location.pathname === "/"
+                    ? homeRef?.current?.clientWidth!
+                    : expRef?.current?.clientWidth!
+            );
+            setSelPos(
+                location.pathname === "/"
+                    ? homeRef?.current?.offsetLeft!
+                    : expRef?.current?.offsetLeft!
+            );
+        }
     }, [location.pathname, homeRef.current, expRef.current]);
 
     useEffect(() => {
@@ -70,7 +76,7 @@ export default function Nav(props: NavProps) {
                         ref={homeRef}
                         className={`flex group cursor-pointer self-center align-middle select-none`}
                     >
-                        <NavLink to={"/"} className={"block"} onClick={() => enqueueWord("Hello!")}>
+                        <NavLink to={"/"} className={"block"}>
                             <FontAwesomeIcon icon={faHome} size={"lg"} className="inline mr-2" />
                             Home
                         </NavLink>
@@ -79,11 +85,7 @@ export default function Nav(props: NavProps) {
                         ref={expRef}
                         className={`flex group cursor-pointer self-center align-middle select-none ml-8`}
                     >
-                        <NavLink
-                            to={"/experience"}
-                            className={"block"}
-                            onClick={() => enqueueWord("Experience")}
-                        >
+                        <NavLink to={"/experience"} className={"block"}>
                             <FontAwesomeIcon
                                 icon={faTimeline}
                                 size={"lg"}
