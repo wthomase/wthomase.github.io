@@ -2,7 +2,7 @@ export default function Home() {
     return (
         <article>
             <p className="text-lg animate-fadeLeftIn ease-in-out">
-                I'm a Software Engineer currently living in the Seattle area. In my short time in
+                I'm a Software Engineer currently located in the Seattle area. In my short time in
                 the industry I've primarily worked in full-stack web development.
             </p>
             <p className="opacity-0 text-lg animate-fadeLeftIn ease-in-out animationDelay-[150ms] mt-4">

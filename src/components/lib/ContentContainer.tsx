@@ -22,19 +22,13 @@ export default function ContentContainer(props: ContentContainerProps) {
                     isVisible ? " animate-fadeBottomUp" : ""
                 }`}
             >
-                <div>
-                    <div className="text-lg w-fit">{title}</div>
-                    <div className="text-base w-fit">{description}</div>
-                </div>
-                {startStr || endStr ? (
-                    <div className="inline-flex mt-6">
-                        <div className="flex text-sm text-center mr-2">{startStr}</div>
-                        {startStr && endStr && "-"}
-                        <div className="flex text-sm text-center ml-2">{endStr}</div>
+                <div className="text-lg w-fit">{title}</div>
+                <div className="text-base w-fit">{description}</div>
+                <div className={`inline-flex mt-6 ${!startStr && !endStr ? "hidden" : ""}`}>
+                    <div className="flex text-sm text-center">
+                        {startStr} {startStr && endStr && "-"} {endStr}
                     </div>
-                ) : (
-                    ""
-                )}
+                </div>
             </div>
 
             <ul>{children}</ul>

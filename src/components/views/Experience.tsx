@@ -12,14 +12,11 @@ export default function Experience() {
                 description={"TecAce Software, Bellevue, WA"}
             >
                 <ContentItem>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                    unknown printer took a galley of type and scrambled it to make a type specimen
-                    book. It has survived not only five centuries, but also the leap into electronic
-                    typesetting, remaining essentially unchanged. It was popularised in the 1960s
-                    with the release of Letraset sheets containing Lorem Ipsum passages, and more
-                    recently with desktop publishing software like Aldus PageMaker including
-                    versions of Lorem Ipsum.
+                    <p>
+                        Converted existing backend services for a deployed project into
+                        infrasturcutre-as-code with AWS CDK to improve ease of maintenance across
+                        deployment environments.
+                    </p>
                     <div className="mt-4 flex flex-wrap justify-center">
                         <Chip label="AWS CDK" />
                         <Chip label="AWS CodePipeline" />
@@ -29,30 +26,29 @@ export default function Experience() {
                     </div>
                 </ContentItem>
                 <ContentItem>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                    unknown printer took a galley of type and scrambled it to make a type specimen
-                    book. It has survived not only five centuries, but also the leap into electronic
-                    typesetting, remaining essentially unchanged. It was popularised in the 1960s
-                    with the release of Letraset sheets containing Lorem Ipsum passages, and more
-                    recently with desktop publishing software like Aldus PageMaker including
-                    versions of Lorem Ipsum.
+                    <p>
+                        Worked on development and maintenance of a full content management system
+                        for a popular developer documentation site.
+                    </p>
+                    <p className="mt-8">
+                        Implemented a review and publishing feature for the content management
+                        system, allowing administrators to review and comment on pending changes
+                        before publishing.
+                    </p>
                     <div className="mt-4 flex flex-wrap justify-center">
                         <Chip label="AWS SQS" />
                         <Chip label="AWS Lambda" />
                         <Chip label="Node.js" />
                         <Chip label="React" />
+                        <Chip label="Material UI" />
+                        <Chip label="MySQL" />
                     </div>
                 </ContentItem>
                 <ContentItem>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                    unknown printer took a galley of type and scrambled it to make a type specimen
-                    book. It has survived not only five centuries, but also the leap into electronic
-                    typesetting, remaining essentially unchanged. It was popularised in the 1960s
-                    with the release of Letraset sheets containing Lorem Ipsum passages, and more
-                    recently with desktop publishing software like Aldus PageMaker including
-                    versions of Lorem Ipsum.
+                    <p>
+                        Managed a small team of Software Engineers, leading daily standup meetings
+                        and assisting in code review.
+                    </p>
                 </ContentItem>
             </ContentContainer>
             <ContentContainer
@@ -62,36 +58,28 @@ export default function Experience() {
                 description={"TecAce Software, Bellevue, WA"}
             >
                 <ContentItem>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                    unknown printer took a galley of type and scrambled it to make a type specimen
-                    book. It has survived not only five centuries, but also the leap into electronic
-                    typesetting, remaining essentially unchanged. It was popularised in the 1960s
-                    with the release of Letraset sheets containing Lorem Ipsum passages, and more
-                    recently with desktop publishing software like Aldus PageMaker including
-                    versions of Lorem Ipsum.
+                    <p>
+                        Implemented a blog content management system for a multi-project admin
+                        dashboard.
+                    </p>
                     <div className="mt-4 flex flex-wrap justify-center">
                         <Chip label="Node.js" />
                         <Chip label="React" />
                         <Chip label="Redux Saga" />
                         <Chip label="Material UI" />
+                        <Chip label="AWS EC2" />
                     </div>
                 </ContentItem>
                 <ContentItem>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                    unknown printer took a galley of type and scrambled it to make a type specimen
-                    book. It has survived not only five centuries, but also the leap into electronic
-                    typesetting, remaining essentially unchanged. It was popularised in the 1960s
-                    with the release of Letraset sheets containing Lorem Ipsum passages, and more
-                    recently with desktop publishing software like Aldus PageMaker including
-                    versions of Lorem Ipsum.
+                    <p>
+                        Worked on frontend design implementation and search integration for a home
+                        IoT developer documentation site.
+                    </p>
                     <div className="mt-4 flex flex-wrap justify-center">
                         <Chip label="Node.js" />
                         <Chip label="jQuery" />
                         <Chip label="AWS CloudSearch" />
                         <Chip label="AWS EC2" />
-                        <Chip label="HTML5/CSS3" />
                         <Chip label="Bootstrap" />
                     </div>
                 </ContentItem>
