@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import useWindowResizeAnimFreeze from "../../hooks/useWindowResizeAnimFreeze";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import useLanguage, { SupportedLanguages } from "../../hooks/useLanguage";
 
 interface NavProps {
     menuOpen: boolean;
@@ -21,6 +22,7 @@ export default function Nav(props: NavProps) {
     const expRef = useRef<HTMLLIElement | null>(null);
 
     const location = useLocation();
+    const { translations, lang, setLang } = useLanguage();
 
     useWindowResizeAnimFreeze(selRef.current);
 
@@ -44,7 +46,7 @@ export default function Nav(props: NavProps) {
 
     useEffect(() => {
         selResizer();
-    }, [location.pathname]);
+    }, [location.pathname, lang]);
 
     useEffect(() => {
         window.addEventListener("resize", selResizer);
@@ -78,7 +80,7 @@ export default function Nav(props: NavProps) {
                     >
                         <NavLink to={"/"} className={"block"}>
                             <FontAwesomeIcon icon={faHome} size={"lg"} className="inline mr-2" />
-                            Home
+                            {translations.nav.home}
                         </NavLink>
                     </li>
                     <li
@@ -91,7 +93,7 @@ export default function Nav(props: NavProps) {
                                 size={"lg"}
                                 className="inline mr-2"
                             />
-                            Experience
+                            {translations.nav.experience}
                         </NavLink>
                     </li>
                     <li className="flex group cursor-pointer self-center align-middle select-none ml-8">
@@ -104,11 +106,21 @@ export default function Nav(props: NavProps) {
                                 size={"lg"}
                                 className="inline mr-2"
                             />
-                            Contact
+                            {translations.nav.contact}
                         </a>
                     </li>
                     <li className="flex group cursor-pointer self-center align-middle select-none ml-8">
-                        日本語
+                        <div
+                            onClick={() => {
+                                setLang(
+                                    lang === SupportedLanguages.English
+                                        ? SupportedLanguages.Japanese
+                                        : SupportedLanguages.English
+                                );
+                            }}
+                        >
+                            {translations.nav.swap}
+                        </div>
                     </li>
                 </ul>
                 <div

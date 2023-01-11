@@ -6,6 +6,7 @@ import { faHome, faTimeline } from "@fortawesome/free-solid-svg-icons";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 import useWindowResizeAnimFreeze from "../../hooks/useWindowResizeAnimFreeze";
+import useLanguage, { SupportedLanguages } from "../../hooks/useLanguage";
 
 interface SlideMenuProps {
     open: boolean;
@@ -19,11 +20,11 @@ export default function SlideMenu(props: SlideMenuProps) {
 
     useWindowResizeAnimFreeze(divRef);
 
+    const { translations, lang, setLang } = useLanguage();
     const onSetRef = useCallback((ref: HTMLDivElement) => {
         setDivRef(ref);
     }, []);
 
-    const onClick = () => onSelect();
     const selectedClassName = "border-b-slate-100 border-b-2 pb-2";
 
     return (
@@ -37,41 +38,44 @@ export default function SlideMenu(props: SlideMenuProps) {
                 <li className="text-slate-100 text-4xl m-auto cursor-pointer select-none">
                     <NavLink
                         to={"/"}
-                        onClick={() => {
-                            onClick();
-                        }}
+                        onClick={onSelect}
                         className={({ isActive }) => (isActive ? selectedClassName : undefined)}
                     >
                         <FontAwesomeIcon icon={faHome} className="mr-5" />
-                        Home
+                        {translations.nav.home}
                     </NavLink>
                 </li>
                 <li className="text-slate-100 text-4xl m-auto cursor-pointer select-none">
                     <NavLink
                         to={"/experience"}
-                        onClick={() => {
-                            onClick();
-                        }}
+                        onClick={onSelect}
                         className={({ isActive }) => (isActive ? selectedClassName : undefined)}
                     >
                         <FontAwesomeIcon icon={faTimeline} className="mr-5" />
-                        Experience
+                        {translations.nav.experience}
                     </NavLink>
                 </li>
                 <li
                     className="text-slate-100 text-4xl m-auto cursor-pointer select-none"
-                    onClick={onClick}
+                    onClick={onSelect}
                 >
                     <a href={"https://linkedin.com/in/thomas-woodward-571947117"} target={"_blank"}>
                         <FontAwesomeIcon icon={faLinkedin} className="mr-5" />
-                        Contact
+                        {translations.nav.contact}
                     </a>
                 </li>
                 <li
                     className="text-slate-100 text-4xl m-auto cursor-pointer select-none"
-                    onClick={onClick}
+                    onClick={() => {
+                        onSelect();
+                        setLang(
+                            lang === SupportedLanguages.English
+                                ? SupportedLanguages.Japanese
+                                : SupportedLanguages.English
+                        );
+                    }}
                 >
-                    日本語
+                    {translations.nav.swap}
                 </li>
             </ul>
         </nav>

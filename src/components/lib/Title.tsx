@@ -1,30 +1,36 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import useAutoTextTyper from "../../hooks/useAutoTextTyper";
+import useLanguage from "../../hooks/useLanguage";
+import { TranslationMap } from "../../util/translations";
 import Divider from "./Divider";
 
-function getTitle(path: string) {
+function getTitle(path: string, translations: TranslationMap) {
     switch (path) {
         case "/experience":
-            return "Experience";
+            return translations.titles.experience;
         case "/":
-            return "Hello!";
+            return translations.titles.home;
         default:
-            return "Not Found!";
+            return translations.titles.notFound;
     }
 }
 
 export default function Title() {
+    const { translations, lang } = useLanguage();
     const location = useLocation();
 
-    const { text, cursorVisible, enqueueWord } = useAutoTextTyper(getTitle(location.pathname), {
-        cursorBlinkMs: 500,
-        changeIntervalMs: 85,
-    });
+    const { text, cursorVisible, enqueueWord } = useAutoTextTyper(
+        getTitle(location.pathname, translations),
+        {
+            cursorBlinkMs: 500,
+            changeIntervalMs: 85,
+        }
+    );
 
     useEffect(() => {
-        enqueueWord(getTitle(location.pathname));
-    }, [location.pathname]);
+        enqueueWord(getTitle(location.pathname, translations));
+    }, [location.pathname, lang]);
 
     return (
         <>

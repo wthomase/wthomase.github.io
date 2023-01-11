@@ -1,4 +1,4 @@
-export default function Home() {
+export default function Index() {
     return (
         <article>
             <p className="text-lg animate-fadeLeftIn ease-in-out">
