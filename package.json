@@ -7,8 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "predeploy": "tsc && vite build && node addKnownRoutes.js && echo thomaswoodward.dev > ./dist/CNAME",
-    "deploy": "gh-pages -d dist -b main"
+    "predeploy": "tsc && vite build && echo thomaswoodward.dev > ./dist/CNAME",
+    "deploy": "node deploy.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.2",

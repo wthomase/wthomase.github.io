@@ -1,5 +1,5 @@
 import { useState } from "react";
-import uasHasBeenInViewPort from "../../hooks/useHasBeenInViewPort";
+import useHasBeenInViewPort from "../../hooks/useHasBeenInViewPort";
 
 interface ContentContainerProps {
     startStr?: string;
@@ -13,7 +13,7 @@ export default function ContentContainer(props: ContentContainerProps) {
     const { startStr, endStr, title, description, children } = props;
 
     const [ref, setRef] = useState<HTMLDivElement | null>(null);
-    const isVisible = uasHasBeenInViewPort(ref, 0.05);
+    const isVisible = useHasBeenInViewPort(ref, 0.05);
 
     return (
         <div className={"inline-block mb-16 w-full"} ref={(newRef) => setRef(newRef)}>
