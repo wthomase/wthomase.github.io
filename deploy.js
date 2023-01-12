@@ -20,7 +20,7 @@ for (let view of views) {
 const promptUser = readline.createInterface({ input: process.stdin, output: process.stdout });
 
 promptUser.question("Enter commit message: ", (msg) => {
-    readline.close();
+    promptUser.close();
     if (!msg) {
         throw Error("Commit message required for update.");
     }
