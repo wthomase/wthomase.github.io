@@ -65,7 +65,7 @@ export default function SlideMenu(props: SlideMenuProps) {
                     </a>
                 </li>
                 <li
-                    className="text-slate-100 text-4xl m-auto cursor-pointer select-none"
+                    className="hidden text-slate-100 text-4xl m-auto cursor-pointer select-none"
                     onClick={() => {
                         onSelect();
                         setLang(
