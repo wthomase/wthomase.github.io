@@ -1,10 +1,10 @@
+import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faBars, faHome, faTimeline, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faX, faHome, faTimeline } from "@fortawesome/free-solid-svg-icons";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import useWindowResizeAnimFreeze from "../../hooks/useWindowResizeAnimFreeze";
-import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import useLanguage, { SupportedLanguages } from "../../hooks/useLanguage";
+import useWindowResizeAnimFreeze from "../../hooks/useWindowResizeAnimFreeze";
 
 interface NavProps {
     menuOpen: boolean;
@@ -109,7 +109,7 @@ export default function Nav(props: NavProps) {
                             {translations.nav.contact}
                         </a>
                     </li>
-                    <li className="flex group cursor-pointer self-center align-middle select-none ml-8">
+                    <li className="hidden group cursor-pointer self-center align-middle select-none ml-8">
                         <div
                             onClick={() => {
                                 setLang(

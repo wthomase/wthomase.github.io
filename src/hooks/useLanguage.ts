@@ -1,27 +1,27 @@
-import { createContext, useContext } from 'react';
-import translations from '../util/translations';
+import { createContext, useContext } from "react";
+import translations from "../util/translations";
 
 export enum SupportedLanguages {
     Japanese = "ja",
-    English = "en"
+    English = "en",
 }
 
 export type Language = {
-    lang: SupportedLanguages,
-    setLang: (newLang: SupportedLanguages) => any
-}
+    lang: SupportedLanguages;
+    setLang: (newLang: SupportedLanguages) => any;
+};
 
 export const LanguageContext = createContext<Language>({
     lang: SupportedLanguages.English,
-    setLang: () => {}
+    setLang: () => {},
 });
 
 export default function useLanguage() {
-    const { lang, setLang }  = useContext(LanguageContext);
+    const { lang, setLang } = useContext(LanguageContext);
 
-    return { 
+    return {
         translations: translations[lang],
         lang,
-        setLang
-    }
+        setLang,
+    };
 }

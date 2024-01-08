@@ -1,14 +1,14 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Nav from "./components/lib/Nav";
-import Experience from "./components/views/Experience";
-import Index from "./components/views/Index";
 import SlideMenu from "./components/lib/SlideMenu";
 import Title from "./components/lib/Title";
+import Experience from "./components/views/Experience";
+import Index from "./components/views/Index";
 
 import NotFound from "./components/views/404";
-import { SupportedLanguages, LanguageContext } from "./hooks/useLanguage";
+import { LanguageContext, SupportedLanguages } from "./hooks/useLanguage";
 
 function App() {
     const [lang, setLang] = useState<SupportedLanguages>(SupportedLanguages.English);

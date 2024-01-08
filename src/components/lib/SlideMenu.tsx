@@ -1,12 +1,12 @@
 import { useCallback, useState } from "react";
 import { NavLink } from "react-router-dom";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faTimeline } from "@fortawesome/free-solid-svg-icons";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faHome, faTimeline } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import useWindowResizeAnimFreeze from "../../hooks/useWindowResizeAnimFreeze";
 import useLanguage, { SupportedLanguages } from "../../hooks/useLanguage";
+import useWindowResizeAnimFreeze from "../../hooks/useWindowResizeAnimFreeze";
 
 interface SlideMenuProps {
     open: boolean;

@@ -25,7 +25,10 @@ enum ActionTypes {
     ENQUEUE = "ENQUEUE",
 }
 
-function typingTextReducer(state: TypingTextState, action: { type: ActionTypes, word?: string }): TypingTextState {
+function typingTextReducer(
+    state: TypingTextState,
+    action: { type: ActionTypes; word?: string }
+): TypingTextState {
     switch (action.type) {
         case ActionTypes.FORWARD:
             return {
@@ -46,7 +49,7 @@ function typingTextReducer(state: TypingTextState, action: { type: ActionTypes, 
             return {
                 ...state,
                 curWord: "",
-                words: state.words.length > 1 ? state.words.slice(1) : state.words, 
+                words: state.words.length > 1 ? state.words.slice(1) : state.words,
                 strIndex: 0,
                 cycled: false,
             };
@@ -59,17 +62,20 @@ function typingTextReducer(state: TypingTextState, action: { type: ActionTypes, 
 
             return {
                 ...state,
-                dir: state.words.length > 0 && state.words[0] !== action.word ? ActionTypes.BACKWARD : ActionTypes.FORWARD,
+                dir:
+                    state.words.length > 0 && state.words[0] !== action.word
+                        ? ActionTypes.BACKWARD
+                        : ActionTypes.FORWARD,
                 strIndex: state.words.length > 0 ? state.strIndex : 0,
                 cycled: state.words.length > 0,
                 idle: false,
-                words
-            }
+                words,
+            };
         }
         case ActionTypes.IDLE:
             return {
                 ...state,
-                idle: true
+                idle: true,
             };
         default:
             throw Error("Fatal: Action type did not match.");
@@ -128,7 +134,7 @@ export default function useAutoTextTyper(startWord: string, options: TypingTextO
         text: state.curWord,
         cursorVisible,
         enqueueWord: (word: string) => {
-            dispatch({ type: ActionTypes.ENQUEUE, word })
-        }
+            dispatch({ type: ActionTypes.ENQUEUE, word });
+        },
     };
 }

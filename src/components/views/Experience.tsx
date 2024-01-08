@@ -1,6 +1,6 @@
 import Chip from "../lib/Chip";
-import ContentItem from "../lib/ContentItem";
 import ContentContainer from "../lib/ContentContainer";
+import ContentItem from "../lib/ContentItem";
 
 export default function Experience() {
     return (
@@ -9,8 +9,22 @@ export default function Experience() {
                 startStr={"June 2021"}
                 endStr={"Current"}
                 title={"Dev Lead"}
-                description={"TecAce Software, Bellevue, WA"}
+                description={"TecAce Software • Bellevue, WA"}
             >
+                <ContentItem>
+                    <p>
+                        Worked on development and maintenance of a custom content management system
+                        for a popular developer documentation site serving 500,000+ users.
+                    </p>
+                    <div className="mt-4 flex flex-wrap justify-center">
+                        <Chip label="AWS Lambda" />
+                        <Chip label="Node.js" />
+                        <Chip label="React" />
+                        <Chip label="TypeScript" />
+                        <Chip label="MySQL" />
+                        <Chip label="Docker" />
+                    </div>
+                </ContentItem>
                 <ContentItem>
                     <p>
                         Converted existing backend services for a deployed project into
@@ -27,27 +41,9 @@ export default function Experience() {
                 </ContentItem>
                 <ContentItem>
                     <p>
-                        Worked on development and maintenance of a full content management system
-                        for a popular developer documentation site.
-                    </p>
-                    <p className="mt-8">
-                        Implemented a review and publishing feature for the content management
-                        system, allowing administrators to review and comment on pending changes
-                        before publishing.
-                    </p>
-                    <div className="mt-4 flex flex-wrap justify-center">
-                        <Chip label="AWS SQS" />
-                        <Chip label="AWS Lambda" />
-                        <Chip label="Node.js" />
-                        <Chip label="React" />
-                        <Chip label="Material UI" />
-                        <Chip label="MySQL" />
-                    </div>
-                </ContentItem>
-                <ContentItem>
-                    <p>
-                        Managed a small team of Software Engineers, leading daily standup meetings
-                        and assisting in code review.
+                        Started managing a small team of Software Engineers. Began assisting in code
+                        review, leading standup meetings and planning new requirements with project
+                        managers.
                     </p>
                 </ContentItem>
             </ContentContainer>
@@ -55,12 +51,17 @@ export default function Experience() {
                 startStr={"May 2017"}
                 endStr={"June 2021"}
                 title={"Software Engineer"}
-                description={"TecAce Software, Bellevue, WA"}
+                description={"TecAce Software • Bellevue, WA"}
             >
                 <ContentItem>
                     <p>
-                        Implemented a blog content management system for a multi-project admin
-                        dashboard.
+                        Implemented customer feature requests into an existing admin dashboard and
+                        content management system serving multiple IoT-based documentation sites.
+                    </p>
+                    <p className="mt-4">
+                        Integrated a markdown based blog editing feature into the content management
+                        system with a custom extension syntax allowing for new elements, such as
+                        graphs, to be easily added to the markdown rendering pipeline.
                     </p>
                     <div className="mt-4 flex flex-wrap justify-center">
                         <Chip label="Node.js" />
@@ -72,15 +73,15 @@ export default function Experience() {
                 </ContentItem>
                 <ContentItem>
                     <p>
-                        Worked on frontend design implementation and search integration for a home
-                        IoT developer documentation site.
+                        Worked on multiple backend microservices, building RESTful APIs and
+                        providing storage, search and analytics services to an existing deployed
+                        project.
                     </p>
                     <div className="mt-4 flex flex-wrap justify-center">
                         <Chip label="Node.js" />
-                        <Chip label="jQuery" />
+                        <Chip label="Express.js" />
                         <Chip label="AWS CloudSearch" />
-                        <Chip label="AWS EC2" />
-                        <Chip label="Bootstrap" />
+                        <Chip label="MySQL" />
                     </div>
                 </ContentItem>
             </ContentContainer>
